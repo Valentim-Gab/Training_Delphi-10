@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7850A2A6-6A6D-42F5-8357-3FC807BDC1BC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DomLUAN.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project2.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DomLUAN">
+        <MSBuild Projects="DomLUAN.dproj"/>
+    </Target>
+    <Target Name="DomLUAN:Clean">
+        <MSBuild Projects="DomLUAN.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DomLUAN:Make">
+        <MSBuild Projects="DomLUAN.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project2">
+        <MSBuild Projects="Project2.dproj"/>
+    </Target>
+    <Target Name="Project2:Clean">
+        <MSBuild Projects="Project2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project2:Make">
+        <MSBuild Projects="Project2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DomLUAN;Project2"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DomLUAN:Clean;Project2:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DomLUAN:Make;Project2:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
